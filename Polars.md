@@ -23,7 +23,13 @@ This library provides similar functionality to Pandas, but with much higher perf
 ## Concept presentation
 
 The Polars library is particularly useful for processing large data, as it uses task parallelization to speed up data transformation operations.
-In the picture below we have a comparison regarding the performance with the other library.
+In the picture below we have a comparison regarding the performance with the other library. So we can notice that the time of the execution of the polar is smaller than the others.
+
+![Polars !](/polarperformance.png "PolarsPerformance")
+
+Now we are going to show how to install and use polar.
+
+**installation**
 
 
 
