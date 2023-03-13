@@ -1,4 +1,4 @@
-(/san-juan-mountains.jpg)
+(/samath/images (1).png)
 
 # POLARS
 
