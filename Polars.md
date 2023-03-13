@@ -1,4 +1,4 @@
-(/assets/images/san-juan-mountains.jpg "San Juan Mountains")
+(/san-juan-mountains.jpg)
 
 # POLARS
 
