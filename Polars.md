@@ -27,7 +27,9 @@ In the picture below we have a comparison regarding the performance with the oth
 
 ![Polars !](/polarperformance.png "PolarsPerformance")
 
-Now we are going to show how to install and use polar.
+
+
+## Practical example
 
 **installation**
 
