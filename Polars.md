@@ -48,8 +48,16 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
 * Then, you need to create a new conda environment with the modules that you want to use with Spyder and include **spyder-kernels** in it. For example, if you want to use scikit-learn, open your terminal or the Anaconda prompt on Windows and run the following commands:
 
   - conda create -n spyder-env -y
+![Polars !](/polarperformance.png "PolarsPerformance")
+    
   - conda activate spyder-env
+
+
   - conda install spyder-kernels scikit-learn -y
+  
+* Finally, you need to connect Spyder to this environment by changing Spyder’s default Python interpreter. To do this, click the name of the current environment in the status bar, and then click Change default environment in Preferences.
+
+* This will open the Preferences dialog in the Python interpreter section. Here, select the option Use the following Python interpreter, and use the dropdown below to select your preferred environment. If it is not listed, use the text box or the Select file button to enter the path to the Python interpreter you want to use.
 
     
 
