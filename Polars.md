@@ -49,11 +49,12 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
 
   - conda create -n spyder-env -y
  
-![Capture !](/capture 1.png "capture")
+    ![Capture !](/capture 1.png "capture")
     
   - conda activate spyder-env
 
-
+    ![Capture !](/capture 2.png "capture")
+    
   - conda install spyder-kernels scikit-learn -y
   
 * Finally, you need to connect Spyder to this environment by changing Spyder’s default Python interpreter. To do this, click the name of the current environment in the status bar, and then click Change default environment in Preferences.
