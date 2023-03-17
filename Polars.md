@@ -49,7 +49,7 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
 
   - conda create -n spyder-env -y
  
-![Capture !](/capture 1.png "Capture")
+![Capture !](/capture 1.png "capture")
     
   - conda activate spyder-env
 
