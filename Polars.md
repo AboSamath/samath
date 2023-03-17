@@ -17,7 +17,8 @@
 
 ## Introduction
 
-The Polars library is a data processing library for Python, which allows to manipulate tabular data in an efficient and fast way. 
+Polar is a Python module that contains simple to use data science functions. It is built on top of SciPy, scikit-learn, seaborn and pandas.
+The Polars library is a data processing library, which allows to manipulate tabular data in an efficient and fast way. 
 This library provides similar functionality to Pandas, but with much higher performance, using Rust as the underlying language.
 
 ## Concept presentation
@@ -27,6 +28,7 @@ In the picture below we have a comparison regarding the performance with the oth
 
 ![Polars !](/polarperformance.png "PolarsPerformance")
 
+Polars also offers data manipulation functions such as filtering, selecting, transforming, merging and reorganizing data.
 
 ## Practical example
 
@@ -75,7 +77,17 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
  - python-pptx (>= 0.6.18)
  - cryptography (> 2.8)
  - imblearn 
+
+
+## Potential alternative
+
+
+## Concrete use case related to data analysis
     
    
+## Conclusion
 
+In conclusion, the Polars library is a powerful data processing library for Python, with similar functionality to Pandas. It is particularly useful for processing large data and offers tools for basic statistical operations, string manipulation and time data management. In addition, it offers the ability to create interactive graphics with the Vega-Lite library.
+
+## Consulted resources
 
