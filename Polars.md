@@ -91,3 +91,9 @@ In conclusion, the Polars library is a powerful data processing library for Pyth
 
 ## Consulted resources
 
+  * Introduction - Polars - User Guide (pola-rs.github.io)
+	* Learn Rust - Rust Programming Language (rust-lang.org)
+	* https://pypi.org/project/polar/
+	* https://docs.spyder-ide.org/5/faq.html#using-packages-installer
+  * https://www.markdownguide.org/basic-syntax#paragraphs-1![image]
+
