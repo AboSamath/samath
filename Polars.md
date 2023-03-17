@@ -62,6 +62,20 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
 
      ![Capture3 !](/capture3.png "capture 3")
 
+**Dependencies**
     
+  polar requires : 
+  
+ - Python (>= 3.5)
+ - NumPy (>= 1.11.0)
+ - SciPy (>= 0.17.0)
+ - Seaborn (>= 0.9.0)
+ - scikit-learn (>= 0.21.3)
+ - nltk (>= 3.4.5)
+ - python-pptx (>= 0.6.18)
+ - cryptography (> 2.8)
+ - imblearn 
+    
+   
 
 
