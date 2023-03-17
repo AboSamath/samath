@@ -48,7 +48,8 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
 * Then, you need to create a new conda environment with the modules that you want to use with Spyder and include **spyder-kernels** in it. For example, if you want to use scikit-learn, open your terminal or the Anaconda prompt on Windows and run the following commands:
 
   - conda create -n spyder-env -y
-![Capture !](/capture1.png "Capture")
+ 
+![Capture !](/capture 1.png "Capture")
     
   - conda activate spyder-env
 
