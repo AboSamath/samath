@@ -30,6 +30,11 @@ In the picture below we have a comparison regarding the performance with the oth
 
 Polars also offers data manipulation functions such as filtering, selecting, transforming, merging and reorganizing data.
 
+As far as Polars is concerned, this library provides tools for basic statistics calculations, string manipulation, missing value handling, and temporal data management.
+
+In addition, Polars supports data visualization using the Vega-Lite library. This feature allows you to create interactive charts with advanced customization options.
+
+
 ## Practical example
 
 **installation**
@@ -77,6 +82,23 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
  - python-pptx (>= 0.6.18)
  - cryptography (> 2.8)
  - imblearn 
+
+In this section we will go through some examples, but first let's create a dataset:
+
+          import polars as pl
+          import numpy as np
+
+          np.random.seed(12)
+
+          df = pl.DataFrame(
+              {
+                  "nrs": [1, 2, 3, None, 5],
+                  "names": ["foo", "ham", "spam", "egg", None],
+                  "random": np.random.rand(5),
+                  "groups": ["A", "A", "B", "C", "B"],
+              }
+          )
+          print(df)
 
 
 ## Potential alternative
