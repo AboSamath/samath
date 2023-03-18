@@ -137,6 +137,10 @@ A simple grouping operation is taken below as an example to illustrate this appr
 
 ![Capture4 !](/capture4.png "capture 4")
 
+For the hashing operations performed during the "split" phase, Polars uses a multithreaded lock-free approach that is illustrated on the following schema:
+
+![Capture5 !](/capture5.png "capture 5")
+
 
 ## Practical example
 
@@ -399,6 +403,7 @@ Always in the Exploratory Data Analys we can try to determine some values like t
     Real_coffee score standard deviation: 23.14582395739384
     Instant_coffee score standard deviation: 23.147354060453647
     Tea score standard deviation: 18.54004674571597
+
 
    
 ## Conclusion
