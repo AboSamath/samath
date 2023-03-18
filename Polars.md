@@ -99,6 +99,45 @@ In this section we will go through some examples, but first let's create a datas
               }
           )
           print(df)
+          
+ Output : 
+      
+        shape: (5, 4)
+      ┌──────┬───────┬──────────┬────────┐
+      │ nrs  ┆ names ┆ random   ┆ groups │
+      │ ---  ┆ ---   ┆ ---      ┆ ---    │
+      │ i64  ┆ str   ┆ f64      ┆ str    │
+      ╞══════╪═══════╪══════════╪════════╡
+      │ 1    ┆ foo   ┆ 0.154163 ┆ A      │
+      │ 2    ┆ ham   ┆ 0.74005  ┆ A      │
+      │ 3    ┆ spam  ┆ 0.263315 ┆ B      │
+      │ null ┆ egg   ┆ 0.533739 ┆ C      │
+      │ 5    ┆ null  ┆ 0.014575 ┆ B      │
+      └──────┴───────┴──────────┴────────┘
+
+Now we will try to calculate some informations like the sum, the minimum, the max, the variance, ... by using what we call aggregations.
+Below are examples of some of them, but there are more such as median, mean, first, etc.
+
+        out = df.select(
+    [
+        pl.sum("random").alias("sum"),
+        pl.min("random").alias("min"),
+        pl.max("random").alias("max"),
+        pl.col("random").max().alias("other_max"),
+        pl.std("random").alias("std dev"),
+        pl.var("random").alias("variance"),
+    ]
+    )
+    print(out)
+
+        shape: (1, 6)
+      ┌──────────┬──────────┬─────────┬───────────┬──────────┬──────────┐
+      │ sum      ┆ min      ┆ max     ┆ other_max ┆ std dev  ┆ variance │
+      │ ---      ┆ ---      ┆ ---     ┆ ---       ┆ ---      ┆ ---      │
+      │ f64      ┆ f64      ┆ f64     ┆ f64       ┆ f64      ┆ f64      │
+      ╞══════════╪══════════╪═════════╪═══════════╪══════════╪══════════╡
+      │ 1.705842 ┆ 0.014575 ┆ 0.74005 ┆ 0.74005   ┆ 0.293209 ┆ 0.085971 │
+      └──────────┴──────────┴─────────┴───────────┴──────────┴──────────┘
 
 
 ## Potential alternative
