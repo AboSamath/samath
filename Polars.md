@@ -34,6 +34,43 @@ As far as Polars is concerned, this library provides tools for basic statistics 
 
 In addition, Polars supports data visualization using the Vega-Lite library. This feature allows you to create interactive charts with advanced customization options.
 
+#### Differences in concepts between Polars and Pandas
+
+Pandas gives a label to each row with an index. Polars does not use an index and each row is indexed by its integer position in the table.
+
+Polars aims to have predictable results and readable queries, as such we think an index does not help us reach that objective. We believe the semantics of a query should not change by the state of an index or a reset_index call.
+
+In Polars a DataFrame will always be a 2D table with heterogeneous data-types. The data-types may have nesting, but the table itself will not. Operations like resampling will be done by specialized functions or methods that act like 'verbs' on a table explicitly stating columns that 'verb' operates on. As such, it is our conviction that not having indices make things simpler, more explicit, more readable and less error-prone.
+
+Note that an 'index' data structure as known in databases will be used by polars as an optimization technique.
+
+**Polars uses Apache Arrow arrays to represent data in memory while Pandas uses Numpy arrays**
+Polars represents data in memory with Arrow arrays while Pandas represents data in memory in Numpy arrays. Apache Arrow is an emerging standard for in-memory columnar analytics that can accelerate data load times, reduce memory usage and accelerate calculations.
+
+Polars can convert data to Numpy format with the to_numpy method.
+
+**Key syntax differences**
+Users coming from Pandas generally need to know one thing...
+
+    polars != pandas
+
+**Selecting data**
+As there is no index in Polars there is no .loc or iloc method in Polars - and there is also no SettingWithCopyWarning in Polars.
+
+However, the best way to select data in Polars is to use the expression API. For example, if you want to select a column in Pandas you can do one of the following:
+
+    df['a']
+    df.loc[:,'a']
+
+but in Polars you would use the .select method:
+
+    df.select(['a'])
+
+If you want to select rows based on the values then in Polars you use the .filter method:
+
+    df.filter(pl.col('a') < 10)
+
+As noted in the section on expressions below, Polars can run operations in .select and filter in parallel and Polars can carry out query optimization on the full set of data selection criteria.
 
 ## Practical example
 
