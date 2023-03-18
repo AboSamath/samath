@@ -81,9 +81,7 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
  - nltk (>= 3.4.5)
  - python-pptx (>= 0.6.18)
  - cryptography (> 2.8)
- - imblearn : A rust drawing library for high quality data plotting for both WASM and native, statically and realtimely
- 
- 
+ - imblearn 
 
 In this section we will go through some examples, but first let's create a dataset:
 
@@ -195,8 +193,18 @@ This tips listed previously is some of the thing that we can do with polars, nex
 
 ## Potential alternative
 
+Now lets list below the potential alternatives of polars : 
 
-## Concrete use case related to data analysis
+* db-benchmark : reproducible benchmark of database-like ops
+* arrow-datafusion : Apache Arrow DataFusion SQL Query Engine
+* Apache Arrow : Apache Arrow is a multi-language toolbox for accelerated data interchange and in-memory processing
+* redpanda : Redpanda is a streaming data platform for developers. Kafka API compatible. 10x faster. No ZooKeeper. No JVM!
+* plotters : A rust drawing library for high quality data plotting for both WASM and native, statically and realtimely.
+* SaaSHub : SaaSHub - Software Alternatives and Reviews. SaaSHub helps you find the best software and product alternatives
+
+## Concrete use case related to data analyss
+
+Now we a are going to see an exammple 
     
    
 ## Conclusion
@@ -210,4 +218,6 @@ In conclusion, the Polars library is a powerful data processing library for Pyth
  * https://pypi.org/project/polar/
  * https://docs.spyder-ide.org/5/faq.html#using-packages-installer
  * https://www.markdownguide.org/basic-syntax#paragraphs-1![image]
+ * https://www.libhunt.com/r/polars
+
 
