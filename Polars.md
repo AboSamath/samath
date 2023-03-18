@@ -45,16 +45,19 @@ In Polars a DataFrame will always be a 2D table with heterogeneous data-types. T
 Note that an 'index' data structure as known in databases will be used by polars as an optimization technique.
 
 **Polars uses Apache Arrow arrays to represent data in memory while Pandas uses Numpy arrays**
+
 Polars represents data in memory with Arrow arrays while Pandas represents data in memory in Numpy arrays. Apache Arrow is an emerging standard for in-memory columnar analytics that can accelerate data load times, reduce memory usage and accelerate calculations.
 
 Polars can convert data to Numpy format with the to_numpy method.
 
 **Key syntax differences**
+
 Users coming from Pandas generally need to know one thing...
 
     polars != pandas
 
 **Selecting data**
+
 As there is no index in Polars there is no .loc or iloc method in Polars - and there is also no SettingWithCopyWarning in Polars.
 
 However, the best way to select data in Polars is to use the expression API. For example, if you want to select a column in Pandas you can do one of the following:
@@ -71,6 +74,61 @@ If you want to select rows based on the values then in Polars you use the .filte
     df.filter(pl.col('a') < 10)
 
 As noted in the section on expressions below, Polars can run operations in .select and filter in parallel and Polars can carry out query optimization on the full set of data selection criteria.
+
+**Files**
+
+Polars supports different file types, and its respective parsers are amongst the fastest out there.
+
+For instance, it is faster to load a CSV file via Polars before handing it to Pandas than loading them using Pandas. 
+
+In the exemples below we will see how to read and writre a CSV file : 
+
+Reading : 
+
+    df = pl.read_csv("path.csv")
+
+CSV files come in many different flavors, so make sure to check the read_csv() API.
+
+Writting :
+
+    df = pl.DataFrame({"foo": [1, 2, 3], "bar": [None, "bak", "baz"]})
+    df.write_csv("path.csv")
+
+Scanning : 
+
+Polars allows you to scan a CSV input. Scanning delays the actual parsing of the file and instead returns a lazy computation holder called a LazyFrame.
+
+    df = pl.scan_csv("path.csv")
+
+Let's see now some examples regarding a JSON file.
+
+Reading :
+
+    df = pl.read_json("path.json")
+
+Writting : 
+
+    df = pl.DataFrame({"foo": [1, 2, 3], "bar": [None, "bak", "baz"]})
+    # json
+    df.write_json("path.json")
+    # ndjson
+    df.write_ndjson("path.json")
+
+Scanning : 
+
+    df = pl.scan_ndjson("path.json")
+
+Polars can deal with multiple files differently depending on your needs and memory strain.
+Let's create some files to give use some context:
+
+    import polars as pl
+
+    df = pl.DataFrame({"abo": [1, 2, 3], "velo": ["auto", "car", "spam"]})
+
+    for i in range(5):
+        df.write_csv(f"my_many_files_{i}.csv")
+
+
 
 ## Practical example
 
