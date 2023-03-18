@@ -81,7 +81,9 @@ In our case we use Anaconda3 so the path will be : C:\Users\DELL\anaconda3
  - nltk (>= 3.4.5)
  - python-pptx (>= 0.6.18)
  - cryptography (> 2.8)
- - imblearn 
+ - imblearn : A rust drawing library for high quality data plotting for both WASM and native, statically and realtimely
+ 
+ 
 
 In this section we will go through some examples, but first let's create a dataset:
 
