@@ -141,7 +141,36 @@ For the hashing operations performed during the "split" phase, Polars uses a mul
 
 ![Capture5 !](/capture5.png "capture 5")
 
+Examples : 
 
+    import polars as pl
+
+    from .dataset import dataset
+
+    q = (
+        dataset.lazy()
+        .groupby(["state", "party"])
+        .agg([pl.count("party").alias("count")])
+        .filter((pl.col("party") == "Anti-Administration") | (pl.col("party") == "Pro-Administration"))
+        .sort("count", descending=True)
+        .limit(5)
+    )
+
+    df = q.collect()
+    
+    shape: (5, 3)
+    ┌───────┬─────────────────────┬───────┐
+    │ state ┆ party               ┆ count │
+    │ ---   ┆ ---                 ┆ ---   │
+    │ cat   ┆ cat                 ┆ u32   │
+    ╞═══════╪═════════════════════╪═══════╡
+    │ NJ    ┆ Pro-Administration  ┆ 3     │
+    │ VA    ┆ Anti-Administration ┆ 3     │
+    │ CT    ┆ Pro-Administration  ┆ 3     │
+    │ NC    ┆ Pro-Administration  ┆ 2     │
+    │ NC    ┆ Anti-Administration ┆ 1     │
+    └───────┴─────────────────────┴───────┘
+    
 ## Practical example
 
 **installation**
