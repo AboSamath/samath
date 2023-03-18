@@ -129,6 +129,14 @@ Let's create some files to give use some context:
         df.write_csv(f"my_many_files_{i}.csv")
 
 
+**Group By Concept**
+
+One of the most efficient ways to process tabular data is to parallelize its processing via the "split-apply-combine" approach. This operation is at the core of the Polars grouping implementation, allowing it to attain lightning-fast operations. Specifically, both the "split" and "apply" phases are executed in a multi-threaded fashion.
+
+A simple grouping operation is taken below as an example to illustrate this approach:
+
+![Capture4 !](/capture4.png "capture 4")
+
 
 ## Practical example
 
@@ -297,10 +305,101 @@ Now lets list below the potential alternatives of polars :
 * plotters : A rust drawing library for high quality data plotting for both WASM and native, statically and realtimely.
 * SaaSHub : SaaSHub - Software Alternatives and Reviews. SaaSHub helps you find the best software and product alternatives
 
-## Concrete use case related to data analyss
+## Concrete use case related to data analysis
 
-Now we a are going to see an exammple 
+Now we a are going to see an exammple related to data analysis.
+
+We have a csv file named "food-consumption", we are going to do some manipulation of the data in this file.
+
+First of all we need to import all the important library that we are going to use : 
+
+    import polars as pl
+    import numpy as np
+    from sklearn.model_selection import train_test_split
+
+In a Second time we read the CSV file : 
+
+    df =pl.read_csv(r'C:\Users\DELL\Desktop\Abo\Perso\Master 1 IA DIT\Visualisation Exploration de données\food-consumption.csv')
     
+    print(df)
+    
+    shape: (16, 21)
+    ┌─────────┬─────────────┬─────────┬─────┬─────┬───────────┬───────────┬─────────┬─────────────┐
+    │ Country ┆ Real coffee ┆ Instant ┆ Tea ┆ ... ┆ Margarine ┆ Olive oil ┆ Yoghurt ┆ Crisp bread │
+    │ ---     ┆ ---         ┆ coffee  ┆ --- ┆     ┆ ---       ┆ ---       ┆ ---     ┆ ---         │
+    │ str     ┆ i64         ┆ ---     ┆ i64 ┆     ┆ i64       ┆ i64       ┆ i64     ┆ i64         │
+    │         ┆             ┆ i64     ┆     ┆     ┆           ┆           ┆         ┆             │
+    ╞═════════╪═════════════╪═════════╪═════╪═════╪═══════════╪═══════════╪═════════╪═════════════╡
+    │ Germany ┆ 90          ┆ 49      ┆ 88  ┆ ... ┆ 85        ┆ 74        ┆ 30      ┆ 26          │
+    │ Italy   ┆ 82          ┆ 10      ┆ 60  ┆ ... ┆ 24        ┆ 94        ┆ 5       ┆ 18          │
+    │ France  ┆ 88          ┆ 42      ┆ 63  ┆ ... ┆ 47        ┆ 36        ┆ 57      ┆ 3           │
+    │ Holland ┆ 96          ┆ 62      ┆ 98  ┆ ... ┆ 97        ┆ 13        ┆ 53      ┆ 15          │
+    │ ...     ┆ ...         ┆ ...     ┆ ... ┆ ... ┆ ...       ┆ ...       ┆ ...     ┆ ...         │
+    │ Norway  ┆ 92          ┆ 17      ┆ 83  ┆ ... ┆ 94        ┆ 28        ┆ 2       ┆ 62          │
+    │ Finland ┆ 98          ┆ 12      ┆ 84  ┆ ... ┆ 94        ┆ 17        ┆ null    ┆ 64          │
+    │ Spain   ┆ 70          ┆ 40      ┆ 40  ┆ ... ┆ 51        ┆ 91        ┆ 16      ┆ 13          │
+    │ Ireland ┆ 30          ┆ 52      ┆ 99  ┆ ... ┆ 25        ┆ 31        ┆ 3       ┆ 9           │
+    └─────────┴─────────────┴─────────┴─────┴─────┴───────────┴───────────┴─────────┴─────────────┘
+
+
+Selection of one column : 
+
+    colonne =   df['Country']
+    print(colonne)
+    
+    shape: (16,)
+    Series: 'Country' [str]
+    [
+        "Germany"
+        "Italy"
+        "France"
+        "Holland"
+        "Belgium"
+        "Luxembourg"
+        "England"
+        "Portugal"
+        "Austria"
+        "Switzerland"
+        "Sweden"
+        "Denmark"
+        "Norway"
+        "Finland"
+        "Spain"
+        "Ireland"
+    ]
+
+Always in the Exploratory Data Analys we can try to determine some values like the average and the standard.
+
+    #Find the average of each of the numeric features.
+
+    Real_coffee_mean = df['Real coffee'].mean()
+    Instant_coffee_mean = df['Instant coffee'].mean()
+    Tea_mean = df['Tea'].mean()
+
+
+    # Find the standard deviation of each of the numeric features
+
+    Real_coffee_std = df['Real coffee'].std()
+    Instant_coffee_std = df['Instant coffee'].std()
+    Tea_std = df['Tea'].std()
+
+    # Printing the results
+    print('Average Real_coffee score:',Real_coffee_mean)
+    print('Average Instant_coffee score:',Instant_coffee_mean)
+    print('Average Tea score:',Tea_mean )
+    print('Real_coffee score standard deviation:',Real_coffee_std)
+    print('Instant_coffee score standard deviation:',Instant_coffee_std)
+    print('Tea score standard deviation:',Tea_std)
+    
+  output : 
+       
+    Average Real_coffee score: 78.5625
+    Average Instant_coffee score: 39.25
+    Average Tea score: 78.5
+    Real_coffee score standard deviation: 23.14582395739384
+    Instant_coffee score standard deviation: 23.147354060453647
+    Tea score standard deviation: 18.54004674571597
+
    
 ## Conclusion
 
