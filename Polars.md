@@ -129,6 +129,9 @@ Below are examples of some of them, but there are more such as median, mean, fir
     ]
     )
     print(out)
+    
+
+Output : 
 
         shape: (1, 6)
       ┌──────────┬──────────┬─────────┬───────────┬──────────┬──────────┐
@@ -138,6 +141,54 @@ Below are examples of some of them, but there are more such as median, mean, fir
       ╞══════════╪══════════╪═════════╪═══════════╪══════════╪══════════╡
       │ 1.705842 ┆ 0.014575 ┆ 0.74005 ┆ 0.74005   ┆ 0.293209 ┆ 0.085971 │
       └──────────┴──────────┴─────────┴───────────┴──────────┴──────────┘
+
+We can also do some pretty complex things. In the next snippet we count all names ending with the string "am".
+
+        out = df.select(
+    [
+        pl.col("names").filter(pl.col("names").str.contains(r"am$")).count(),
+    ]
+    )
+    print(out)
+    
+Output : 
+
+      shape: (1, 1)
+        ┌───────┐
+        │ names │
+        │ ---   │
+        │ u32   │
+        ╞═══════╡
+        │ 2     │
+        └───────┘
+        
+A polars expression can also do an implicit GROUPBY, AGGREGATION, and JOIN in a single expression. In the examples below we do a GROUPBY OVER "groups" and AGGREGATE SUM of "random", and in the next expression we GROUPBY OVER "names" and AGGREGATE a LIST of "random". These window functions can be combined with other expressions and are an efficient way to determine group statistics. 
+
+            df = df.select(
+    [
+        pl.col("*"),  # select all
+        pl.col("random").sum().over("groups").alias("sum[random]/groups"),
+        pl.col("random").list().over("names").alias("random/name"),
+    ]
+    )
+    print(df)
+    
+Output : 
+      
+      shape: (5, 6)
+      ┌──────┬───────┬──────────┬────────┬────────────────────┬─────────────┐
+      │ nrs  ┆ names ┆ random   ┆ groups ┆ sum[random]/groups ┆ random/name │
+      │ ---  ┆ ---   ┆ ---      ┆ ---    ┆ ---                ┆ ---         │
+      │ i64  ┆ str   ┆ f64      ┆ str    ┆ f64                ┆ list[f64]   │
+      ╞══════╪═══════╪══════════╪════════╪════════════════════╪═════════════╡
+      │ 1    ┆ foo   ┆ 0.154163 ┆ A      ┆ 0.894213           ┆ [0.154163]  │
+      │ 2    ┆ ham   ┆ 0.74005  ┆ A      ┆ 0.894213           ┆ [0.74005]   │
+      │ 3    ┆ spam  ┆ 0.263315 ┆ B      ┆ 0.27789            ┆ [0.263315]  │
+      │ null ┆ egg   ┆ 0.533739 ┆ C      ┆ 0.533739           ┆ [0.533739]  │
+      │ 5    ┆ null  ┆ 0.014575 ┆ B      ┆ 0.27789            ┆ [0.014575]  │
+      └──────┴───────┴──────────┴────────┴────────────────────┴─────────────┘
+
+This tips listed previously is some of the thing that we can do with polars, next we are going to see the potential alternative existing.
 
 
 ## Potential alternative
